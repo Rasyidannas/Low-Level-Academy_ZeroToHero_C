@@ -2,6 +2,7 @@
 
 # include <stdio.h>
 # include <math.h>
+# include <stdlib.h>
 
 /* Problem 1.1 */
 // int main() {
@@ -98,24 +99,86 @@
 //   return 0;
 // }
 
+// int main() {
+//     // Start at 2, since 1 is not a prime number
+//     for (int i = 2; i <= 300; i++) {
+//         int isPrime = 1; // Assume the number is prime
+//
+//         // Check for divisors
+//         for (int j = 2; j < i; j++) {
+//             if (i % j == 0) {
+//                 isPrime = 0; // Found a divisor, so it's not prime
+//                 break;       // No need to check further
+//             }
+//         }
+//
+//         // If no divisors were found, print the number
+//         if (isPrime) {
+//             printf("%d\t", i);
+//         }
+//     }
+//
+//     return 0;
+// }
+
 int main() {
-    // Start at 2, since 1 is not a prime number
-    for (int i = 2; i <= 300; i++) {
-        int isPrime = 1; // Assume the number is prime
+  int number, select;
+  printf(R"(
+        Choose one of all this options: 
+          [1] Factorial
+          [2] Prime
+          [3] Odd or Even
+          [4] Exit
+         )");
 
-        // Check for divisors
-        for (int j = 2; j < i; j++) {
-            if (i % j == 0) {
-                isPrime = 0; // Found a divisor, so it's not prime
-                break;       // No need to check further
-            }
-        }
+  scanf("%d", &select);
 
-        // If no divisors were found, print the number
-        if (isPrime) {
-            printf("%d\t", i);
-        }
-    }
-
+  if (select > 3) {
+    printf("Thanks for using this app!");
     return 0;
+  }
+  
+  printf("Enter the number ");
+  scanf("%d", &number);
+
+  switch (select) {
+    case 1:
+      int result = 1;
+      for (int i = 2; i <= number; i++) {
+        int multiplication = result * i;
+        result = multiplication;
+      }
+      
+      printf("Factorial of %d is %d", number, result);
+      break;
+    case 2:
+      int isPrime = 1; // Assume the number is prime
+
+      // Check for divisors
+      for (int j = 2; j < number; j++) {
+        if (number % j == 0) {
+            isPrime = 0; // Found a divisor, so it's not prime
+            break;       // No need to check further
+        }
+      }
+
+      // If no divisors were found, print the number
+      if (isPrime) {
+        printf("%d is prime", number);
+      } else {
+        printf("%d is not prime", number);
+      }
+
+      break;
+    case 3:
+      if (number % 2 != 0)
+        printf("%d is odd", number);
+      else
+        printf("%d is even", number);
+      break;
+    default:
+      printf("Thanks for using this app!");
+  }
+
+  return 0;
 }
